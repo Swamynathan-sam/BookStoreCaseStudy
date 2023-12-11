@@ -1,0 +1,26 @@
+server:
+  port: 8098
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka 
+spring:
+  application:
+    name: SpringAPIGateway
+    
+  cloud:
+    gateway:
+      routes:
+      - id: BOOK_DETAILS
+        uri: http://localhost:8081
+        predicates:
+        - Path=/book/**
+      - id: BOOK_STORE
+        uri: http://localhost:8082
+        predicates:
+        - Path=/bookstore/**
+      - id: USER_DETAILS
+        uri: http://localhost:8083
+        predicates:
+        - Path=/user/**
+      
